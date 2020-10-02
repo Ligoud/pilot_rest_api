@@ -9,4 +9,5 @@
 
 ---
 Тестирование api осуществляется посредством postman. 
+
 Базовый тестовый пресет хранится в JSON файле 'pilot_test_task.postman_collection.json'
