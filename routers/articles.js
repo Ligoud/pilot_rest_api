@@ -6,7 +6,7 @@ const articlesController = require("../controllers/articlesController");
 //Все статьи (можно фильтровать и сортировать)
 articlesRouter.get("/", articlesController.getArticlesHandler);
 //Конкретную статью (нельзя фильтровать и сортировать)
-articlesRouter.get("/:id", articlesController.getArticlesHandler);
+articlesRouter.get("/:id", articlesController.getOneArticleHandler);
 /* #endregion */
 
 //Создать новую статью

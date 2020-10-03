@@ -1,6 +1,12 @@
 const restify = require("restify");
 const server = restify.createServer();
+//
+const db = require("./db/database");
+//Синхронизируем при запуске приложения
+db.synchronize();
+//
 server.use(restify.plugins.queryParser());
+server.use(restify.plugins.bodyParser());
 //Все кастомные роутеры
 const productsRouter = require("./routers/products");
 const articlesRouter = require("./routers/articles");

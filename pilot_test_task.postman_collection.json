@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "84647374-c0b9-4f3e-baec-43e759444072",
+		"name": "pilot_test_task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "articles",
+			"item": [
+				{
+					"name": "getAllArticles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4444/articles/",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"articles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllArticlesWithFiltering",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4444/articles/?text=searchvalue&id[lte]=3&date[gte]=30.09.2020",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"articles",
+								""
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "searchvalue",
+									"description": "Значение поля должно содержаться в названии статьи или в содержимом статьи"
+								},
+								{
+									"key": "id[lte]",
+									"value": "3",
+									"description": "Фильтрация по id статьи"
+								},
+								{
+									"key": "date[gte]",
+									"value": "30.09.2020",
+									"description": "Фильтрация по дате"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllArticlesWIthSorting",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4444/articles/?sort[asc]=id&sort[desc]=content&sort[desc]=name&sort[asc]=date",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"articles",
+								""
+							],
+							"query": [
+								{
+									"key": "sort[asc]",
+									"value": "id",
+									"description": "Сортируем по возрастанию по поля id"
+								},
+								{
+									"key": "sort[desc]",
+									"value": "content",
+									"description": "Сортируем по убыванию по полю content"
+								},
+								{
+									"key": "sort[desc]",
+									"value": "name",
+									"description": "Сортируем по убыванию по полю name"
+								},
+								{
+									"key": "sort[asc]",
+									"value": "date",
+									"description": "Сортируем по возрастанию по полю date"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createArticle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"productId\": 3,\n\t\"articleName\":\"name\",\n\t\"content\": \"text content\",\n\t\"date\": \"22.09.2020\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4444/articles/",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"articles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateArticle",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"productId\": 3,\n\t\"articleName\":\"name updated\",\n\t\"content\": \"text content updated\",\n\t\"date\": \"22.09.2020\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4444/articles/",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"articles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteArticle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4444/articles/2",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"articles",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "getAllProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4444/products/",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProductsWithFiltering",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4444/products/?id[gte]=2&text=product name&price[e]=10000",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "id[gte]",
+									"value": "2",
+									"description": "id >= 2"
+								},
+								{
+									"key": "text",
+									"value": "product name",
+									"description": "Значение поля должно содержаться в названии продукта или в описании продукта"
+								},
+								{
+									"key": "price[e]",
+									"value": "10000",
+									"description": "Цена продукта === 10000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProductsWithSorting",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4444/products/?sort[asc]=id&sort[desc]=name&sort[asc]=description&sort[desc]=price",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"products",
+								""
+							],
+							"query": [
+								{
+									"key": "sort[asc]",
+									"value": "id",
+									"description": "Сортировка по возрастанию id"
+								},
+								{
+									"key": "sort[desc]",
+									"value": "name",
+									"description": "Сортировка по убыванию названий продуктов"
+								},
+								{
+									"key": "sort[asc]",
+									"value": "description",
+									"description": "Сортировка по возрастанию описаний продуктов"
+								},
+								{
+									"key": "sort[desc]",
+									"value": "price",
+									"description": "Сортировка по убыванию цены продуктов"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createProducts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"productName\":\"name\",\n\t\"description\": \"description\",\n\t\"price\": 135.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4444/products/",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProducts",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"description\": \"description updated\",\n\t\"price\": 235.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4444/products/",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4444/products/1",
+							"host": [
+								"localhost"
+							],
+							"port": "4444",
+							"path": [
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
