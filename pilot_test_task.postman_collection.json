@@ -70,7 +70,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4444/articles/?sort[asc]=id&sort[desc]=content&sort[desc]=name&sort[asc]=date",
+							"raw": "localhost:4444/articles/?sort[asc]=title",
 							"host": [
 								"localhost"
 							],
@@ -83,22 +83,25 @@
 								{
 									"key": "sort[asc]",
 									"value": "id",
-									"description": "Сортируем по возрастанию по поля id"
+									"description": "Сортируем по возрастанию по поля id",
+									"disabled": true
 								},
 								{
 									"key": "sort[desc]",
 									"value": "content",
-									"description": "Сортируем по убыванию по полю content"
+									"description": "Сортируем по убыванию по полю content",
+									"disabled": true
 								},
 								{
-									"key": "sort[desc]",
-									"value": "name",
+									"key": "sort[asc]",
+									"value": "title",
 									"description": "Сортируем по убыванию по полю name"
 								},
 								{
 									"key": "sort[asc]",
 									"value": "date",
-									"description": "Сортируем по возрастанию по полю date"
+									"description": "Сортируем по возрастанию по полю date",
+									"disabled": true
 								}
 							]
 						}
@@ -112,7 +115,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"ProductId\": 1,\n\t\"title\":\"name\",\n\t\"content\": \"text content\",\n\t\"date\": \"22.09.2020\"\n}",
+							"raw": "{\n\t\"ProductId\": 5,\n\t\"title\":\"abc name\",\n\t\"content\": \"abc content\",\n\t\"date\": \"10.10.2020\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -266,7 +269,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4444/products/?sort[asc]=id&sort[desc]=name&sort[asc]=description&sort[desc]=price",
+							"raw": "localhost:4444/products/",
 							"host": [
 								"localhost"
 							],
@@ -279,22 +282,26 @@
 								{
 									"key": "sort[asc]",
 									"value": "id",
-									"description": "Сортировка по возрастанию id"
+									"description": "Сортировка по возрастанию id",
+									"disabled": true
 								},
 								{
 									"key": "sort[desc]",
-									"value": "name",
-									"description": "Сортировка по убыванию названий продуктов"
+									"value": "title",
+									"description": "Сортировка по убыванию названий продуктов",
+									"disabled": true
 								},
 								{
 									"key": "sort[asc]",
 									"value": "description",
-									"description": "Сортировка по возрастанию описаний продуктов"
+									"description": "Сортировка по возрастанию описаний продуктов",
+									"disabled": true
 								},
 								{
 									"key": "sort[desc]",
 									"value": "price",
-									"description": "Сортировка по убыванию цены продуктов"
+									"description": "Сортировка по убыванию цены продуктов",
+									"disabled": true
 								}
 							]
 						}
@@ -336,7 +343,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"description\": \"description updated\",\n\t\"price\": 1235.50\n}",
+							"raw": "{\n\t\"title\":\"another title 5\",\n    \"price\":160000\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -344,14 +351,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4444/products/2",
+							"raw": "localhost:4444/products/5",
 							"host": [
 								"localhost"
 							],
 							"port": "4444",
 							"path": [
 								"products",
-								"2"
+								"5"
 							]
 						}
 					},
