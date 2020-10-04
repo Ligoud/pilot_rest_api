@@ -1,6 +1,6 @@
 const Filters = require("../modifiers/filters");
 const db = require("../db/database");
-const { useFilter } = require("./modifiers");
+const { useFilter, useSorter } = require("./modifiers");
 
 //
 //Допустимые название параметров (остальные не будут проверяться)
@@ -38,12 +38,18 @@ module.exports = {
     // Формируем фильтры
     resultFilter = await useFilter(query, fieldsToCheck, "content");
     // Формируем сортировки
-    //todo: СОРТИРОВКИ СЮДА
+    let orderObj = {};
+    orderObj.order = await useSorter(query, allModelFields);
     //Запрос к бд делаем
-    let rows = await db.get(MODEL_NAME, resultFilter);
+    let rows = await db.get(MODEL_NAME, orderObj, resultFilter);
     //К каждой статье подбираем описание товара
     for (let i = 0; i < rows.length; i++) {
-      let extRes = await db.get(FOREIGN_MODEL, {}, { id: rows[i].ProductId });
+      let extRes = await db.get(
+        FOREIGN_MODEL,
+        {},
+        {},
+        { id: rows[i].ProductId }
+      );
       rows[i] = { article: rows[i], product: extRes };
     }
     //Отправляем полученные данные пользователю
@@ -52,7 +58,7 @@ module.exports = {
   },
   async getOneArticleHandler(req, res, next) {
     let id = req.params.id;
-    let row = await db.get(MODEL_NAME, {}, { id: id });
+    let row = await db.get(MODEL_NAME, {}, {}, { id: id });
     res.send(row);
     next();
   },

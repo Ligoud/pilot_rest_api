@@ -42,11 +42,12 @@ class Database {
     }
     return model;
   }
-  //Получаем существующие строки. modifier - фильтры и сортировки
-  async get(modelName, modifier, conditionQuery = {}) {
+  //Получаем существующие строки. modifier - фильтры и сортировки. sort - объект {order:[]}
+  async get(modelName, sort, modifier, conditionQuery = {}) {
     let model = this.getCurrentModel(modelName);
     let result = await model.findAll({
       where: { ...conditionQuery, ...modifier },
+      ...sort,
       raw: true,
     });
     return result;

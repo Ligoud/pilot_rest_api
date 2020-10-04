@@ -33,7 +33,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4444/articles/?text=searchvalue&id[lte]=3&date[gte]=30.09.2020",
+							"raw": "localhost:4444/articles/?text=na&date[gte]=20.09.2020",
 							"host": [
 								"localhost"
 							],
@@ -45,17 +45,18 @@
 							"query": [
 								{
 									"key": "text",
-									"value": "searchvalue",
+									"value": "na",
 									"description": "Значение поля должно содержаться в названии статьи или в содержимом статьи"
 								},
 								{
 									"key": "id[lte]",
 									"value": "3",
-									"description": "Фильтрация по id статьи"
+									"description": "Фильтрация по id статьи",
+									"disabled": true
 								},
 								{
 									"key": "date[gte]",
-									"value": "30.09.2020",
+									"value": "20.09.2020",
 									"description": "Фильтрация по дате"
 								}
 							]
@@ -111,7 +112,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"productId\": 3,\n\t\"articleName\":\"name\",\n\t\"content\": \"text content\",\n\t\"date\": \"22.09.2020\"\n}",
+							"raw": "{\n\t\"ProductId\": 1,\n\t\"title\":\"name\",\n\t\"content\": \"text content\",\n\t\"date\": \"22.09.2020\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,7 +140,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"productId\": 3,\n\t\"articleName\":\"name updated\",\n\t\"content\": \"text content updated\",\n\t\"date\": \"22.09.2020\"\n}",
+							"raw": "{\n\t\"ProductId\": 2,\n\t\"date\": \"22.09.2019\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -147,14 +148,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4444/articles/",
+							"raw": "localhost:4444/articles/3",
 							"host": [
 								"localhost"
 							],
 							"port": "4444",
 							"path": [
 								"articles",
-								""
+								"3"
 							]
 						}
 					},
@@ -166,14 +167,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:4444/articles/2",
+							"raw": "localhost:4444/articles/1",
 							"host": [
 								"localhost"
 							],
 							"port": "4444",
 							"path": [
 								"articles",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -210,7 +211,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:4444/products/?id[gte]=2&text=product name&price[e]=10000",
+							"raw": "localhost:4444/products/?price[gt]=1000&price[lte]=5500",
 							"host": [
 								"localhost"
 							],
@@ -223,17 +224,36 @@
 								{
 									"key": "id[gte]",
 									"value": "2",
-									"description": "id >= 2"
+									"description": "id >= 2",
+									"disabled": true
 								},
 								{
 									"key": "text",
 									"value": "product name",
-									"description": "Значение поля должно содержаться в названии продукта или в описании продукта"
+									"description": "Значение поля должно содержаться в названии продукта или в описании продукта",
+									"disabled": true
 								},
 								{
-									"key": "price[e]",
-									"value": "10000",
-									"description": "Цена продукта === 10000"
+									"key": "price[gt]",
+									"value": "1000",
+									"description": "Цена продукта > 1000"
+								},
+								{
+									"key": "price[lte]",
+									"value": "5500",
+									"description": "Цена продукта <= 5500"
+								},
+								{
+									"key": "randomfield",
+									"value": "none",
+									"description": "Не учитываются рандомные поля",
+									"disabled": true
+								},
+								{
+									"key": "id[not_a_modifier]",
+									"value": "value",
+									"description": "Не учитываются рандомные модификаторы",
+									"disabled": true
 								}
 							]
 						}
@@ -288,7 +308,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"productName\":\"name\",\n\t\"description\": \"description\",\n\t\"price\": 135.50\n}",
+							"raw": "{\n\t\"title\":\"another name\",\n\t\"description\": \"description number xxx\",\n\t\"price\": 155000\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -316,7 +336,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"description\": \"description updated\",\n\t\"price\": 235.50\n}",
+							"raw": "{\n\t\"description\": \"description updated\",\n\t\"price\": 1235.50\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -324,14 +344,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:4444/products/",
+							"raw": "localhost:4444/products/2",
 							"host": [
 								"localhost"
 							],
 							"port": "4444",
 							"path": [
 								"products",
-								""
+								"2"
 							]
 						}
 					},
@@ -343,14 +363,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:4444/products/1",
+							"raw": "localhost:4444/products/3",
 							"host": [
 								"localhost"
 							],
 							"port": "4444",
 							"path": [
 								"products",
-								"1"
+								"3"
 							]
 						}
 					},

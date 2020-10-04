@@ -40,4 +40,27 @@ module.exports = {
     }
     return resultFilter;
   },
+
+  async useSorter({ sort }, allModelsFields) {
+    const keywords = ["ASC", "DESC"];
+    let sortArray = [];
+    //Перебираем все типы сортировки
+    for (let sortType in sort) {
+      //Если тип валидный
+      if (keywords.includes(sortType.toUpperCase())) {
+        //Смотрим какие поля таблицы сортируются данным типом
+        if (Array.isArray(sort[sortType])) {
+          sort[sortType].forEach((el) => {
+            if (allModelsFields.includes(el)) {
+              sortArray.push([el, sortType.toUpperCase()]);
+            }
+          });
+        } else {
+          //Значит это строка (1 поле только)
+          sortArray.push([sort[sortType], sortType.toUpperCase()]);
+        }
+      }
+    }
+    return sortArray;
+  },
 };
